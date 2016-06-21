@@ -10,3 +10,27 @@ printf("second copy after cloning. typed after the train2");
 print)_
 printf(branch)
 }
+#include<stdio.h>
+main()
+{
+printf("hai all\n");
+printf("naveenkumar\n");
+ptintf("sapient\n")
+
+
+printf("second copy after cloning. typed after the train2");
+print)_
+printf(branch)
+}
+#include<stdio.h>
+main()
+{
+printf("hai all\n");
+printf("naveenkumar\n");
+ptintf("sapient\n")
+
+
+printf("second copy after cloning. typed after the train2");
+print)_
+printf(branch)
+}
