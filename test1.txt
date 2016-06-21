@@ -5,4 +5,6 @@ printf("hai all\n");
 printf("naveenkumar\n");
 ptintf("sapient\n")
 
+
+printf("second copy after cloning. typed after the train2");
 }
