@@ -2,5 +2,7 @@
 main()
 {
 printf("hai all\n");
+printf("naveenkumar\n");
+ptintf("sapient\n")
 
 }
