@@ -62,3 +62,25 @@ dbms_output.put_line(c1);
 dbms_output.put_line(c3);
 dbms_output.put_line(c4);
 end;
+
+
+
+		TRIGGER
+
+create or replace trigger t1
+before delete or insert on customer
+for each row
+
+begin
+dbms_output.put_line('trigger testing'); 
+if (to_char(sysdate,'dy') in ('wed') or to_char(sysdate,'hr24') not between '16' and '17')
+then 
+raise_application_error(-20400,'You cannot perform dml , since trigger');
+end if;
+end;
+
+insert into customer(customer_name,customer_no) values('trigger',5)
+desc customer
+select * from customer
+
+drop trigger t1
