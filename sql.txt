@@ -1,0 +1,64 @@
+
+  		CUSTOMER SQL
+
+CREATE TABLE  "CUSTOMER" 
+   (	"CUSTOMER_NO" NUMBER(10,0), 
+	"CUSTOMER_NAME" VARCHAR2(30), 
+	"EMAIL" VARCHAR2(30), 
+	"PHONE" NUMBER(10,0), 
+	 CONSTRAINT "CUSTOMER_PK" PRIMARY KEY ("CUSTOMER_NO") ENABLE
+   )
+/
+
+
+INVOICE SQL
+
+CREATE table "INVOICE" (
+    "INVOICE_NO"   NUMBER(10,0) NOT NULL,
+    "INVOICE_DATE" DATE,
+    "AMOUNT"       NUMBER(5,0),
+    "CUSTOMER_REF" NUMBER(10,0),
+    constraint  "INVOICE_PK" primary key ("INVOICE_NO")
+)
+/
+
+ALTER TABLE "INVOICE" ADD CONSTRAINT "INVOICE_FK" 
+FOREIGN KEY ("CUSTOMER_REF")
+REFERENCES "CUSTOMER" ("CUSTOMER_NO")
+ON DELETE CASCADE
+
+/
+
+
+			PROCEDURE
+
+create or replace procedure addcustname(c1 customer.customer_name %type ,c2 customer.customer_no %type )
+IS
+begin
+insert into customer(customer_name,customer_no) values(c1,c2);
+
+end;
+
+begin
+addcustname('ABC',100);
+
+end ;
+
+CREATE or replace procedure addcusto(c1 out customer.customer_name%type, c2 in customer.customer_no%type, c3 out customer.email%type, c4 out customer.phone%type)
+is
+begin
+select customer_name,email,phone into c1,c3,c4 from customer where customer_no=c2;
+
+exception
+when no_data_found then 
+raise_application_error(-20001,'customer name not found');
+end;
+
+declare 
+c1 customer.customer_name%type; c2 customer.customer_no%type; c3 customer.email%type; c4 customer.phone%type;
+begin
+addcusto(c1,2,c3,c4);
+dbms_output.put_line(c1);
+dbms_output.put_line(c3);
+dbms_output.put_line(c4);
+end;
